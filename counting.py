@@ -6,10 +6,3 @@ def count_character(string, target):
           count += 1
 
   return count
-
-
-def start_K(str):
-   if str[0] == 'K':
-      return True
-   else:
-      return False
