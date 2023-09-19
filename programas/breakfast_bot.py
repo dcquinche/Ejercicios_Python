@@ -1,44 +1,46 @@
 import time
 
-print("Hello! I am Bob, the Breakfast Bot. ")
-time.sleep(2)
-print("Today we have two breakfasts available. ")
-time.sleep(2)
-print("The first is waffles with strawberries and whipped cream. ")
-time.sleep(2)
-print("The second is sweet potato pancakes with butter and syrup. ")
-time.sleep(2)
+def print_pause(str):
+  print(str)
+  time.sleep(2)
 
-while True:
-  while True:
-    order = input("Please place your order. Would you like waffles or pancakes?\n").lower()
+def valid_input(prompt, option1, option2):
+    while True:
+        response = input(prompt).lower()
+        if option1 in response:
+            return response
+        elif option2 in response:
+            return response
+        else:
+            print_pause("Sorry, I don't understand.")
+
+def intro():
+    print_pause("Hello! I am Bob, the Breakfast Bot. ")
+    print_pause("Today we have two breakfasts available. ")
+    print_pause("The first is waffles with strawberries and whipped cream. ")
+    print_pause("The second is sweet potato pancakes with butter and syrup. ")
+
+def get_order():
+    order = valid_input("Please place your order. Would you like waffles or pancakes?\n", "waffles", "pancakes")
     if "waffles" in order:
-      time.sleep(2)
-      print("Waffles it is!")
-      break
+        print_pause("Waffles it is!")
     elif "pancakes" in order:
-      time.sleep(2)
-      print("Pancakes it is!")
-      break
-    else:
-      time.sleep(2)
-      print("Sorry, I don\'t understand.")
+        print_pause("Pancakes it is!")
+    print_pause("Your order will be ready shortly.")
 
-  time.sleep(2)
-  print("Your order will be ready shortly.")
-  time.sleep(2)
-  while True:
-    order_again = input("Would you like to place another order? Please say 'yes' or 'no'.\n").lower()
+def order_again():
+    order_again = valid_input("Would you like to place another order? Please say 'yes' or 'no'.\n", "yes", "no")
     if "yes" in order_again:
-      time.sleep(2)
-      print("Very good, I'm happy to take another order.")
-      break
+      print_pause("Very good, I'm happy to take another order.")
+      get_order()
     elif "no" in order_again:
-      time.sleep(2)
-      print("OK, goodbye!")
-      break
-    else:
-      time.sleep(2)
-      print("Sorry, I don\'t understand.")
-  if "no" in order_again:
-    break
+      print_pause("OK, goodbye!")
+
+def order_breakfast():
+    intro()
+    get_order()
+    order_again()
+
+order_breakfast()
+
+
